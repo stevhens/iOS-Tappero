@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tappero" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Tappero" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,6 +25,7 @@
                                         <state key="normal" image="play2"/>
                                         <connections>
                                             <action selector="playBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iCO-T1-SZs"/>
+                                            <segue destination="8Rt-Pz-gPJ" kind="show" id="kiq-fW-xkM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -42,58 +43,79 @@
                                 <rect key="frame" x="20" y="380" width="320" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ti9-zX-B5L">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LOGO" translatesAutoresizingMaskIntoConstraints="NO" id="JuS-Vt-YDj">
+                                <rect key="frame" x="253" y="44" width="133" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="logoImg" destination="JuS-Vt-YDj" id="KK7-SQ-qW4"/>
+                        <outlet property="pickerView" destination="28M-Q7-XEL" id="hxo-zN-ipT"/>
+                        <outlet property="playBg" destination="lDj-8d-ouX" id="O4h-2s-JD6"/>
+                        <outlet property="playBtn" destination="Ysd-pf-UHV" id="Yv9-kD-7kI"/>
+                        <outlet property="tapGoalTextField" destination="7zL-V7-A4j" id="5px-Lb-lgA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
+        </scene>
+        <!--Tap View Controller-->
+        <scene sceneID="Ccx-nc-LDg">
+            <objects>
+                <viewController id="8Rt-Pz-gPJ" userLabel="Tap View Controller" customClass="TapViewController" customModule="Tappero" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="giS-Jd-yLw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jvk-tT-qrx">
                                 <rect key="frame" x="20" y="199" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="star3"/>
                                 <connections>
-                                    <action selector="tapBtnPressed:" destination="BYZ-38-t0r" eventType="touchDownRepeat" id="rj4-dh-rWF"/>
+                                    <action selector="tapBtnPressed:" destination="8Rt-Pz-gPJ" eventType="touchUpInside" id="PZW-hi-IUK"/>
+                                    <action selector="tapBtnPressed:" destination="8Rt-Pz-gPJ" eventType="touchDownRepeat" id="dRD-NI-shN"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Taps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYz-i5-elG">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Taps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMB-us-axG">
                                 <rect key="frame" x="214" y="132" width="120" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LOGO" translatesAutoresizingMaskIntoConstraints="NO" id="JuS-Vt-YDj">
-                                <rect key="frame" x="253" y="44" width="133" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JV6-Qr-e8z">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3N4-Yr-KXy">
                                 <rect key="frame" x="20" y="132" width="120" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vv5-U3-Vbi">
-                                <rect key="frame" x="82" y="546" width="250" height="50"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3v8-TK-Z34">
+                                <rect key="frame" x="82" y="551" width="250" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90980392156862744" green="0.71764705882352942" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.90980392160000001" green="0.71764705880000002" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Xgr-Pf-KS7"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vr7-YU-2sp"/>
                     <connections>
-                        <outlet property="gameOverLabel" destination="Vv5-U3-Vbi" id="o6i-ed-rg9"/>
-                        <outlet property="logoImg" destination="JuS-Vt-YDj" id="KK7-SQ-qW4"/>
-                        <outlet property="pickerView" destination="28M-Q7-XEL" id="hxo-zN-ipT"/>
-                        <outlet property="playBg" destination="lDj-8d-ouX" id="O4h-2s-JD6"/>
-                        <outlet property="playBtn" destination="Ysd-pf-UHV" id="Yv9-kD-7kI"/>
-                        <outlet property="tapBtn" destination="ti9-zX-B5L" id="OG9-8e-d8Y"/>
-                        <outlet property="tapCountLabel" destination="GYz-i5-elG" id="Edt-Ng-zXl"/>
-                        <outlet property="tapGoalTextField" destination="7zL-V7-A4j" id="5px-Lb-lgA"/>
-                        <outlet property="timerLabel" destination="JV6-Qr-e8z" id="wam-aJ-NvS"/>
+                        <outlet property="gameOverLabel" destination="3v8-TK-Z34" id="oo1-71-Jc1"/>
+                        <outlet property="tapBtn" destination="Jvk-tT-qrx" id="i0r-eQ-nDN"/>
+                        <outlet property="tapCountLabel" destination="OMB-us-axG" id="07W-Wd-ymR"/>
+                        <outlet property="timerLabel" destination="3N4-Yr-KXy" id="Yrb-ac-whG"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="brH-5z-tj2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
+            <point key="canvasLocation" x="1087" y="134"/>
         </scene>
     </scenes>
     <resources>
