@@ -15,7 +15,8 @@ class TapViewController: UIViewController {
     @IBOutlet weak var tapBtn: UIButton!
     @IBOutlet weak var gameOverLabel: UILabel!
 
-    var maxTaps: String!
+    var taps: String!
+    var maxTaps : Int = 0
     var currTaps : Int = 0
     
     var timer = Timer()
@@ -27,6 +28,10 @@ class TapViewController: UIViewController {
         
         tapCountLabel.textColor = UIColor(red:0.31, green:0.32, blue:0.66, alpha:1.0)
         timerLabel.textColor = UIColor(red:0.31, green:0.32, blue:0.66, alpha:1.0)
+        timerLabel.text = "\(seconds)"
+        tapCountLabel.text = "\(currTaps)"
+        
+        maxTaps = (taps as NSString).integerValue
         
         if isTimerRunning == false {
             isTimerRunning = true
@@ -54,20 +59,6 @@ class TapViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
-    fileprivate func restartGame() {
-        //            restartGame()
-        isTimerRunning = false
-        timer.invalidate()
-        
-        tapBtn.isEnabled = true
-        maxTaps = ""
-        tapCountLabel.text = ""
-        
-        if let image = UIImage(named: "star3") {
-            self.tapBtn.setImage(image, for: .normal)
-        }
-    }
-    
     @objc func updateTimer() {
         seconds -= 1
         
@@ -80,37 +71,35 @@ class TapViewController: UIViewController {
     }
     
     @IBAction func tapBtnPressed(_ sender: UIButton) {
-        currTaps += 1
-                tapBtn.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                UIView.animate(withDuration: 1.0,
-                               delay: 0.2,
-                usingSpringWithDamping: 0.2,
-                initialSpringVelocity: 4.0,
-                options: .allowUserInteraction,
-                animations: { [weak self] in
-                  self?.tapBtn.transform = .identity
-                },
-                completion: nil)
+            currTaps += 1
+            tapBtn.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            UIView.animate(withDuration: 1.0,
+                           delay: 0.2,
+            usingSpringWithDamping: 0.2,
+            initialSpringVelocity: 4.0,
+            options: .allowUserInteraction,
+            animations: { [weak self] in
+              self?.tapBtn.transform = .identity
+            },
+            completion: nil)
 
-                updateTapCountLabel()
+            updateTapCountLabel()
+            
+            if isEnded() {
+//                    showWinAlert()
                 
-                if isEnded() {
-        //            showWinAlert()
-        //            let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        //            myLabel.text = "GameOver!"
-        //            myLabel.fontSize = 65
-        //            myLabel.position = CGPoint(x: viewSize.width * 0.5, y: viewSize.height * 0.65)
-        //            self.addChild(myLabel)
+                gameOver()
+                timer.invalidate()
+                
+                //delay
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
+                   // Code you want to be delayed
                     
-                    gameOver()
-                    timer.invalidate()
+                    self.dismiss(animated: true, completion: nil)
                     
-                    //delay
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
-                       // Code you want to be delayed
-                        self.restartGame()
-                    }
+                    self.restartGame()
                 }
+            }
     }
     
     
@@ -125,6 +114,7 @@ class TapViewController: UIViewController {
                 }
             },
             completion: nil)
+            
             tapBtn.isEnabled = false
             gameOverLabel.isHidden = false
             
@@ -152,12 +142,28 @@ class TapViewController: UIViewController {
         }
     
     func isEnded() -> Bool {
-        return currTaps >= (maxTaps as NSString).integerValue
+        return currTaps >= maxTaps
     }
         
     func updateTapCountLabel() {
         tapCountLabel.text = "\(currTaps)"
     }
+    
+    func restartGame() {
+            //            restartGame()
+            isTimerRunning = false
+    //        timer.invalidate()
+            
+            tapBtn.isEnabled = true
+            maxTaps = 0
+            
+            if let image = UIImage(named: "star3") {
+                self.tapBtn.setImage(image, for: .normal)
+            }
+            
+            //pickerView.selectRow(0, inComponent: 0, animated: true)
+//            tapcount textfield
+        }
     
 
     /*

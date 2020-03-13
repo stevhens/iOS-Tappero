@@ -11,16 +11,10 @@ import UIKit
 class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var logoImg: UIImageView!
-    @IBOutlet weak var tapBtn: UIButton!
-    @IBOutlet weak var tapCountLabel: UILabel!
     @IBOutlet weak var tapGoalTextField: UITextField!
     @IBOutlet weak var playBg: UIView!
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var pickerView: UIPickerView!
-    
-//    @IBOutlet weak var gameOverLabel: UILabel!
-    
-//    @IBOutlet weak var timerLabel: UILabel!
     
     var maxTaps : Int = 0
     var seconds : Int = 0
@@ -90,26 +84,6 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         }
     }
     
-    fileprivate func hideSecondsBtn() {
-    }
-    
-    @IBAction func playBtnPressed(_ sender: Any) {
-        
-        //put time deadline
-        
-        if validateGoalInput(x: tapGoalTextField.text) {
-            hideSecondsBtn()
-            
-            
-            
-//            maxTaps = Int(tapGoalTextField.text!)!
-//            showTapImage()
-//            pickerView.isHidden = true
-            
-            tapGoalTextField.resignFirstResponder()
-        }
-    }
-    
     func showInputAlert(x: Int){
         let alerts = ["Field must not be empty", "Must be number", "Must greater than zero"]
         
@@ -138,7 +112,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         return flag
     }
     
-    func resetBtnColor() {
+//    func resetBtnColor() {
 //        thirtySecondsBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
 //        fourtyFiveSecondsBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
 //        sixtySecondsBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
@@ -148,7 +122,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 //        thirtySecondsBtn.setImage(UIImage(named: "30.png"), for: .normal)
 //        fourtyFiveSecondsBtn.setImage(UIImage(named: "45.png"), for: .normal)
 //        sixtySecondsBtn.setImage(UIImage(named: "60.png"), for: .normal)
-    }
+//    }
     
 //    @IBAction func timerBtnPressed(_ sender: UIButton) {
 //        resetBtnColor()
@@ -187,32 +161,42 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 //        playBg.isHidden = true
 //    }
     
-    func restartGame(){
-        maxTaps = 0
+    //func restartGame(){
+//        maxTaps = 0
 //        resetBtnColor()
-        pickerView.selectRow(0, inComponent: 0, animated: true)
+//        pickerView.selectRow(0, inComponent: 0, animated: true)
 
-        playBtn.isHidden = false
-        tapGoalTextField.text = ""
-        tapGoalTextField.isHidden = false
+//        playBtn.isHidden = false
+//        tapGoalTextField.text = ""
+//        tapGoalTextField.isHidden = false
 //        logoBg.isHidden = false
-        logoImg.isHidden = false
-        playBg.isHidden = false
+//        logoImg.isHidden = false
+//        playBg.isHidden = false
         
 //        tapBtn.isHidden = true
 //        tapCountLabel.text = ""
 //        tapCountLabel.isHidden = true
-        pickerView.isHidden = false
+//        pickerView.isHidden = false
 //        thirtySecondsBtn.isHidden = false
 //        fourtyFiveSecondsBtn.isHidden = false
 //        sixtySecondsBtn.isHidden = false
         
 //        gameOverLabel.isHidden = true
-    }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let tapVC = segue.destination as? TapViewController else { return }
-        tapVC.maxTaps = self.tapGoalTextField.text
+        
+        if validateGoalInput(x: tapGoalTextField.text) {
+            
+//            maxTaps = Int(tapGoalTextField.text!)!
+//            showTapImage()
+//            pickerView.isHidden = true
+            
+            tapGoalTextField.resignFirstResponder()
+        }
+        
+        tapVC.taps = self.tapGoalTextField.text
         
         if seconds == 0 {
             seconds = (timeSeconds[0] as NSString).integerValue
