@@ -63,10 +63,19 @@ class TapViewController: UIViewController {
         seconds -= 1
         
         if seconds < 1 {
-            showFailAlert()
-            restartGame()
+            gameOver()
+            timer.invalidate()
+            
+            //delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
+               // Code you want to be delayed
+                
+                self.dismiss(animated: true, completion: nil)
+                
+                self.restartGame()
+            }
         }
-        
+            
         timerLabel.text = "\(seconds)"
     }
     
@@ -92,11 +101,10 @@ class TapViewController: UIViewController {
                 timer.invalidate()
                 
                 //delay
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Change `2.0` to the desired number of seconds.
                    // Code you want to be delayed
                     
                     self.dismiss(animated: true, completion: nil)
-                    
                     self.restartGame()
                 }
             }
@@ -120,7 +128,7 @@ class TapViewController: UIViewController {
             
             UIView.animate(withDuration: 1, delay: 0.2, options: [.transitionCrossDissolve], animations: {
                 self.gameOverLabel.text = "GAME OVER"
-                self.gameOverLabel.center.x = self.view.bounds.width - 230.0
+                self.gameOverLabel.center.x = self.view.bounds.width - 210.0
                   self.view.layoutIfNeeded()
             }, completion: nil)
             

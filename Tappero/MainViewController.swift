@@ -20,10 +20,13 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var seconds : Int = 0
     
     var selectedSeconds : String? = ""
-    let timeSeconds = ["30","45","60"]
+    let timeSeconds = ["1","45","60"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tapGoalTextField.becomeFirstResponder()
+        
+        tapGoalTextField.underlined()
         
         tapGoalTextField.keyboardType = .asciiCapableNumberPad
         
@@ -48,7 +51,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-        
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return timeSeconds.count
     }
@@ -62,6 +65,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         if let a = selectedSeconds {
             seconds = (a as NSString).integerValue
         } else {
+            //MARK: - check logic
             seconds = 30
         }
     }
@@ -209,6 +213,32 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
 extension String {
     var isInt: Bool {
         return Int(self) != nil
+    }
+}
+
+extension UITextField {
+    func underlined(){
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.lightGray.cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
+    
+    func leftBorder(){
+        let border = CALayer()
+        let width = CGFloat(0.5)
+        border.borderColor = UIColor.lightGray.cgColor
+        border.frame = CGRect(x: 70, y: 0, width: 1, height: 223)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+        
+        
+//        leftBorder.frame = CGRectMake(0.0f, 20.0f, 1.0f, self.passwordField.frame.size.height-20);
+        
     }
 }
 
