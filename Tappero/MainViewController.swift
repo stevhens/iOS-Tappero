@@ -20,7 +20,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var seconds : Int = 0
     
     var selectedSeconds : String? = ""
-    let timeSeconds = ["1","45","60"]
+    let timeSeconds = ["30","45","60"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,7 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
             
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        pickerView.reloadAllComponents()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -64,10 +65,11 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         selectedSeconds = timeSeconds[row]
         if let a = selectedSeconds {
             seconds = (a as NSString).integerValue
-        } else {
-            //MARK: - check logic
-            seconds = 30
         }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: timeSeconds[row] + " Seconds", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)])
     }
     
     override func dismissKeyboard(){

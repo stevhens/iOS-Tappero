@@ -63,7 +63,7 @@ class TapViewController: UIViewController {
         seconds -= 1
         
         if seconds < 1 {
-            gameOver()
+            gameOver(x: 0)
             timer.invalidate()
             
             //delay
@@ -97,7 +97,7 @@ class TapViewController: UIViewController {
             if isEnded() {
 //                    showWinAlert()
                 
-                gameOver()
+                gameOver(x: 1)
                 timer.invalidate()
                 
                 //delay
@@ -111,43 +111,58 @@ class TapViewController: UIViewController {
     }
     
     
-    func gameOver(){
-            //UIImage
-            UIView.transition(with: tapBtn,
-                              duration: 5.00,
-                              options: .curveEaseIn,
-            animations: {
-                if let image = UIImage(named: "gameOver") {
-                    self.tapBtn.setImage(image, for: .normal)
-                }
-            },
-            completion: nil)
-            
-            tapBtn.isEnabled = false
-            gameOverLabel.isHidden = false
-            
-            UIView.animate(withDuration: 1, delay: 0.2, options: [.transitionCrossDissolve], animations: {
-                self.gameOverLabel.text = "GAME OVER"
-                self.gameOverLabel.center.x = self.view.bounds.width - 210.0
-                  self.view.layoutIfNeeded()
-            }, completion: nil)
-            
-            
-    //        let winner = SKLabelNode(fontNamed: "Chalkduster")
-    //        winner.text = "You Win!"
-    //        winner.fontSize = 65
-    //        winner.fontColor = SKColor.green
-    //        winner.position = CGPoint(x: 82, y: 423)
-    //
-    //        self.addChild(winner)
-            
-            //game over animation
-    //        gameOverLbl = SKLabelNode(fontNamed:"Chalkduster")
-    //        gameOverLbl.text = "GameOver!"
-    //        gameOverLbl.fontSize = 65
-    //        gameOverLbl.position = CGPoint(x: 82, y: 423)
-    //        self.addChild(gameOverLbl! as UIViewController)
+    func gameOver(x: Int){
+        var img: String = ""
+        var status: String = ""
+        var color: UIColor?
+        
+        if x == 0 {
+            img = "loseBtn"
+            status = "GAME OVER"
+            color = #colorLiteral(red: 0.9333333333, green: 0.168627451, blue: 0.1647058824, alpha: 1)
+        } else {
+            img = "winBtn"
+            status = "You Win"
+            color = #colorLiteral(red: 0.2235294118, green: 0.7333333333, blue: 0.1803921569, alpha: 1)
         }
+        
+        //UIImage
+        UIView.transition(with: tapBtn,
+                          duration: 5.00,
+                          options: .curveEaseIn,
+        animations: {
+            if let image = UIImage(named: img) {
+                self.tapBtn.setImage(image, for: .normal)
+            }
+        },
+        completion: nil)
+        
+        tapBtn.isEnabled = false
+        gameOverLabel.isHidden = false
+        
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.transitionCrossDissolve], animations: {
+            self.gameOverLabel.text = status
+            self.gameOverLabel.textColor = color
+            self.gameOverLabel.center.x = self.view.bounds.width - 210.0
+              self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+        
+//        let winner = SKLabelNode(fontNamed: "Chalkduster")
+//        winner.text = "You Win!"
+//        winner.fontSize = 65
+//        winner.fontColor = SKColor.green
+//        winner.position = CGPoint(x: 82, y: 423)
+//
+//        self.addChild(winner)
+        
+        //game over animation
+//        gameOverLbl = SKLabelNode(fontNamed:"Chalkduster")
+//        gameOverLbl.text = "GameOver!"
+//        gameOverLbl.fontSize = 65
+//        gameOverLbl.position = CGPoint(x: 82, y: 423)
+//        self.addChild(gameOverLbl! as UIViewController)
+    }
     
     func isEnded() -> Bool {
         return currTaps >= maxTaps
