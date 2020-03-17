@@ -67,8 +67,7 @@ class TapViewController: UIViewController {
             timer.invalidate()
             
             //delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { // Change `2.0` to the desired number of seconds.
-               // Code you want to be delayed
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 
                 self.dismiss(animated: true, completion: nil)
                 
@@ -95,15 +94,12 @@ class TapViewController: UIViewController {
             updateTapCountLabel()
             
             if isEnded() {
-//                    showWinAlert()
                 
                 gameOver(x: 1)
                 timer.invalidate()
                 
                 //delay
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { // Change `2.0` to the desired number of seconds.
-                   // Code you want to be delayed
-                    
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     self.dismiss(animated: true, completion: nil)
                     self.restartGame()
                 }
@@ -126,7 +122,6 @@ class TapViewController: UIViewController {
             color = #colorLiteral(red: 0.2235294118, green: 0.7333333333, blue: 0.1803921569, alpha: 1)
         }
         
-        //UIImage
         UIView.transition(with: tapBtn,
                           duration: 5.00,
                           options: .curveEaseIn,
@@ -146,22 +141,6 @@ class TapViewController: UIViewController {
             self.gameOverLabel.center.x = self.view.bounds.width - 210.0
               self.view.layoutIfNeeded()
         }, completion: nil)
-        
-        
-//        let winner = SKLabelNode(fontNamed: "Chalkduster")
-//        winner.text = "You Win!"
-//        winner.fontSize = 65
-//        winner.fontColor = SKColor.green
-//        winner.position = CGPoint(x: 82, y: 423)
-//
-//        self.addChild(winner)
-        
-        //game over animation
-//        gameOverLbl = SKLabelNode(fontNamed:"Chalkduster")
-//        gameOverLbl.text = "GameOver!"
-//        gameOverLbl.fontSize = 65
-//        gameOverLbl.position = CGPoint(x: 82, y: 423)
-//        self.addChild(gameOverLbl! as UIViewController)
     }
     
     func isEnded() -> Bool {
@@ -173,30 +152,13 @@ class TapViewController: UIViewController {
     }
     
     func restartGame() {
-            //            restartGame()
             isTimerRunning = false
-    //        timer.invalidate()
-            
+        
             tapBtn.isEnabled = true
             maxTaps = 0
             
             if let image = UIImage(named: "star3") {
                 self.tapBtn.setImage(image, for: .normal)
             }
-            
-            //pickerView.selectRow(0, inComponent: 0, animated: true)
-//            tapcount textfield
         }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

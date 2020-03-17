@@ -118,87 +118,10 @@ class MainViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         return flag
     }
     
-//    func resetBtnColor() {
-//        thirtySecondsBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
-//        fourtyFiveSecondsBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
-//        sixtySecondsBtn.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
-//        thirtySecondsBtn.isHighlighted = false
-//        fourtyFiveSecondsBtn.isHighlighted = false
-//        sixtySecondsBtn.isHighlighted = false
-//        thirtySecondsBtn.setImage(UIImage(named: "30.png"), for: .normal)
-//        fourtyFiveSecondsBtn.setImage(UIImage(named: "45.png"), for: .normal)
-//        sixtySecondsBtn.setImage(UIImage(named: "60.png"), for: .normal)
-//    }
-    
-//    @IBAction func timerBtnPressed(_ sender: UIButton) {
-//        resetBtnColor()
-//
-//        if sender == thirtySecondsBtn {
-////            thirtySecondsBtn.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .normal)
-//            thirtySecondsBtn.setImage(UIImage(named: "30dark"), for: .normal)
-//
-//            seconds = 30
-//        }
-//        else if sender == fourtyFiveSecondsBtn {
-////            fourtyFiveSecondsBtn.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .normal)
-//            fourtyFiveSecondsBtn.setImage(UIImage(named: "45dark"), for: .normal)
-//            seconds = 45
-//        }
-//        else if sender == sixtySecondsBtn {
-////            sixtySecondsBtn.setTitleColor(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .normal)
-////            sixtySecondsBtn.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1), for: .normal)
-//            sixtySecondsBtn.setImage(UIImage(named: "60dark"), for: .normal)
-//            seconds = 60
-//        }
-//
-//        timerLabel.text = "Time left: \(seconds)"
-//
-//    }
-    
-    
-//    func showTapImage() {
-////        tapCountLabel.isHidden = false
-////        tapBtn.isHidden = false
-//
-//        logoImg.isHidden = true
-//        playBtn.isHidden = true
-//        tapGoalTextField.isHidden = true
-////        logoBg.isHidden = true
-//        playBg.isHidden = true
-//    }
-    
-    //func restartGame(){
-//        maxTaps = 0
-//        resetBtnColor()
-//        pickerView.selectRow(0, inComponent: 0, animated: true)
-
-//        playBtn.isHidden = false
-//        tapGoalTextField.text = ""
-//        tapGoalTextField.isHidden = false
-//        logoBg.isHidden = false
-//        logoImg.isHidden = false
-//        playBg.isHidden = false
-        
-//        tapBtn.isHidden = true
-//        tapCountLabel.text = ""
-//        tapCountLabel.isHidden = true
-//        pickerView.isHidden = false
-//        thirtySecondsBtn.isHidden = false
-//        fourtyFiveSecondsBtn.isHidden = false
-//        sixtySecondsBtn.isHidden = false
-        
-//        gameOverLabel.isHidden = true
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let tapVC = segue.destination as? TapViewController else { return }
         
         if validateGoalInput(x: tapGoalTextField.text) {
-            
-//            maxTaps = Int(tapGoalTextField.text!)!
-//            showTapImage()
-//            pickerView.isHidden = true
-            
             tapGoalTextField.resignFirstResponder()
         }
         
@@ -237,10 +160,6 @@ extension UITextField {
         border.borderWidth = width
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
-        
-        
-//        leftBorder.frame = CGRectMake(0.0f, 20.0f, 1.0f, self.passwordField.frame.size.height-20);
-        
     }
 }
 
